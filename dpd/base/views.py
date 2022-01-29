@@ -3,30 +3,43 @@ from django.views.generic.list import ListView # smth new. https://www.dennisivy
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+
+from django.contrib.auth.views import LoginView
+
+from django.contrib.auth.mixins import LoginRequiredMixin # and add LoginRequiredMixin to TaskaiList skliaustelius
+
 from . models import Taskai
 
 # Create your views here.
 
-class TaskaiList(ListView):
+class CustomLoginView(LoginView):
+    template_name = 'base/login.html'
+    fields = '__all__'          # no need of separate form html, it's already created
+    redirect_authenticated_user = True
+
+    def get_success_url(self):
+        return reverse_lazy('visi-taskai')
+
+class TaskaiList(LoginRequiredMixin, ListView):
     model = Taskai
     context_object_name = 'taskiukai' # call this kaip nori, so instead of "object list in html template I can use "taskai""
 
-class TaskaiDetail(DetailView):
+class TaskaiDetail(LoginRequiredMixin, DetailView):
     model = Taskai
     context_object_name = 'taskas'
 
-class TaskaiCreate(CreateView):
+class TaskaiCreate(LoginRequiredMixin, CreateView):
     model = Taskai
     fields = '__all__'
     # field = ['title', 'description'] # one way to do it or list all like above
     success_url = reverse_lazy('visi-taskai')
 
-class TaskaiUpdate(UpdateView):
+class TaskaiUpdate(LoginRequiredMixin, UpdateView):
     model = Taskai
     fields = '__all__'
     success_url = reverse_lazy('visi-taskai')
 
-class DeleteView(DeleteView):
+class DeleteView(LoginRequiredMixin, DeleteView):
      model = Taskai
      context_object_name = 'raganosis'
      success_url = reverse_lazy('visi-taskai')

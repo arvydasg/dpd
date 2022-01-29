@@ -36,13 +36,17 @@ class TaskaiDetail(LoginRequiredMixin, DetailView):
 
 class TaskaiCreate(LoginRequiredMixin, CreateView):
     model = Taskai
-    fields = '__all__'
-    # field = ['title', 'description'] # one way to do it or list all like above
+    # fields = '__all__'
+    fields = ['uzsakymai', 'pristatymai', 'km', 'apie']
     success_url = reverse_lazy('visi-taskai')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(TaskaiCreate, self).form_valid(form)
 
 class TaskaiUpdate(LoginRequiredMixin, UpdateView):
     model = Taskai
-    fields = '__all__'
+    fields = ['uzsakymai', 'pristatymai', 'km', 'apie']
     success_url = reverse_lazy('visi-taskai')
 
 class DeleteView(LoginRequiredMixin, DeleteView):

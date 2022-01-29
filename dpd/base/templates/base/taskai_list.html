@@ -1,0 +1,18 @@
+<h1>Mano taskiukai</h1>
+<a href="{% url 'taskas-pridek' %}">Pridek diena</a>
+
+<table>
+  <tr>
+    <th>Item</th>
+  </tr>
+  {% for taskai in taskiukai %}
+  <tr>
+    <td>{{taskai.km}}</td>
+    <td><a href="{% url 'taskas' taskai.id %}">View</a></td>
+    <td><a href="{% url 'taskas-update' taskai.id %}">Edit</a></td>
+    <td><a href="{% url 'taskas-delete' taskai.id %}">Delete</a></td>
+  </tr>
+  {% empty %}
+  <h3>No items in list</h3>
+  {% endfor %}
+</table>

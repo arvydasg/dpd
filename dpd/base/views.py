@@ -47,7 +47,13 @@ class TaskaiList(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['taskiukai'] = context['taskiukai'].filter(user=self.request.user)
-        # context['count'] = context['taskiukai'].filter(complete=False).count() # no need this for me, not a todo app
+        search_input = self.request.GET.get('search-are') or ''
+        if search_input:
+            # context['taskiukai'] = context['taskiukai'].filter(km__icontains=search_input)
+            context['taskiukai'] = context['taskiukai'].filter(km__startswith=search_input)
+            
+        context['search_input'] = search_input
+        
         return context
 
 class TaskaiDetail(LoginRequiredMixin, DetailView):

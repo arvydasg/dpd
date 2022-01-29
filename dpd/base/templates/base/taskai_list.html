@@ -9,6 +9,11 @@
 <h1>Mano taskiukai</h1>
 <a href="{% url 'taskas-pridek' %}">Pridek diena</a>
 
+<form method="GET">
+  <input name="search-are" type="text" value="{{search_input}}"/>
+  <input name="" type="submit" value="search"/>
+</form>
+
 <table>
   <tr>
     <th>Item</th>

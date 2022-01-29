@@ -24,6 +24,12 @@ class TaskaiList(LoginRequiredMixin, ListView):
     model = Taskai
     context_object_name = 'taskiukai' # call this kaip nori, so instead of "object list in html template I can use "taskai""
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['taskiukai'] = context['taskiukai'].filter(user=self.request.user)
+        # context['count'] = context['taskiukai'].filter(complete=False).count() # no need this for me, not a todo app
+        return context
+
 class TaskaiDetail(LoginRequiredMixin, DetailView):
     model = Taskai
     context_object_name = 'taskas'

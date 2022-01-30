@@ -21,6 +21,8 @@ class CustomLoginView(LoginView):
     def get_success_url(self):
         return reverse_lazy('visi-taskai')
 
+
+    
 class RegisterPage(FormView):
     template_name = 'base/register.html'
     form_class = UserCreationForm
@@ -40,6 +42,7 @@ class RegisterPage(FormView):
         return super(RegisterPage, self). get(*args, **kwargs)
     
 
+    
 class TaskaiList(LoginRequiredMixin, ListView):
     model = Taskai
     context_object_name = 'taskiukai' # call this kaip nori, so instead of "object list in html template I can use "taskai""
@@ -56,25 +59,33 @@ class TaskaiList(LoginRequiredMixin, ListView):
         
         return context
 
+
+    
 class TaskaiDetail(LoginRequiredMixin, DetailView):
     model = Taskai
     context_object_name = 'taskas'
 
+
+    
 class TaskaiCreate(LoginRequiredMixin, CreateView):
     model = Taskai
     # fields = '__all__'
-    fields = ['uzsakymai', 'pristatymai', 'km', 'apie']
+    fields = ['diena', 'pristatymai', 'uzsakymai', 'km', 'arbata', 'apie']
     success_url = reverse_lazy('visi-taskai')
 
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super(TaskaiCreate, self).form_valid(form)
 
+
+    
 class TaskaiUpdate(LoginRequiredMixin, UpdateView):
     model = Taskai
-    fields = ['uzsakymai', 'pristatymai', 'km', 'apie']
+    fields = ['diena', 'pristatymai', 'uzsakymai', 'km', 'arbata', 'apie']
     success_url = reverse_lazy('visi-taskai')
 
+
+    
 class DeleteView(LoginRequiredMixin, DeleteView):
      model = Taskai
      context_object_name = 'raganosis'

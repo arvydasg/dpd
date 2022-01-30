@@ -21,29 +21,66 @@
 <h1>Mano taskiukai</h1>
 
 
-<a href="{% url 'taskas-pridek' %}">Pridek diena</a>
 <!-- search -->
 <form method="GET" style="display: flex;">
   <input name="search-are" type="text" value="{{search_input}}" autocomplete="off"/>
   <input class="button" name="" type="submit" value="search" />
 </form>
 
-<!-- taskai list -->
-  <table>
+<br/>
+<a class="button" href="{% url 'taskas-pridek' %}">Pridek diena</a>
+<br/>
+<p></p>
+<table class="table">
     <tr>
-      <th>Item</th>
+      <th scope="col">Diena</th>
+      <th scope="col">Pristatymai</th>
+      <th scope="col">Uzsakymai</th>
+      <th scope="col">Kilometrai</th>
+      <th scope="col">Arbata</th>
+      <th scope="col">Komentarai</th>
+      <th scope="col">Veiksmai</th>
     </tr>
-    {% for taskai in taskiukai %}
+  <tbody>
     <tr>
+      {% for taskai in taskiukai %}
+      <th>{{taskai.diena}}</th>
+      <td>{{taskai.pristatymai}}</td>
+      <td>{{taskai.uzsakymai}}</td>
       <td>{{taskai.km}}</td>
-      <td><a href="{% url 'taskas' taskai.id %}">View</a></td>
-      <td><a href="{% url 'taskas-update' taskai.id %}">Edit</a></td>
-      <td><a href="{% url 'taskas-delete' taskai.id %}">Delete</a></td>
+      <td>{{taskai.arbata}}</td>
+      <td>{{taskai.apie}}</td>
+      <td>
+	<a href="{% url 'taskas' taskai.id %}"><i class="fa fa-eye"></i></a>
+	<a href="{% url 'taskas-update' taskai.id %}"><i class="fa fa-edit"></i></a>
+	<a href="{% url 'taskas-delete' taskai.id %}"><i class="fa fa-trash"></i></a>
+      </td>
     </tr>
-    {% empty %}
-    <h3>No items in list</h3>
-    {% endfor %}
-  </table>
+  </tbody>
+  {% empty %}
+  <h3>No items in list</h3>
+  {% endfor %}
+</table>
 </div>
+
+
+<!-- <\!-- taskai list -\-> -->
+<!-- <table style="width:100%"> -->
+<!--   <br> -->
+<!--     {% for taskai in taskiukai %} -->
+<!--     <tr> -->
+<!--       <td>{{taskai.km}}</td> -->
+<!--       <td>{{taskai.uzsakymai}}</td> -->
+<!--       <td>{{taskai.pristatymai}}</td> -->
+<!--       <td>{{taskai.apie}}</td> -->
+<!--       <td><a href="{% url 'taskas' taskai.id %}">View</a></td> -->
+<!--       <td><a href="{% url 'taskas-update' taskai.id %}">Edit</a></td> -->
+<!--       <td><a href="{% url 'taskas-delete' taskai.id %}">Delete</a></td> -->
+<!--     </tr> -->
+<!--     {% empty %} -->
+<!--     <h3>No items in list</h3> -->
+<!--     {% endfor %} -->
+<!--   </table> -->
+<!-- </div> -->
 
 {% endblock content%}

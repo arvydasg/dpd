@@ -35,7 +35,9 @@
     <tr>
       <th scope="col">Diena</th>
       <th scope="col">Pristatymai</th>
+      <th scope="col">Pakuotes</th>
       <th scope="col">Uzsakymai</th>
+      <th scope="col">Pakuotes</th>
       <th scope="col">Kilometrai</th>
       <th scope="col">Arbata</th>
       <th scope="col">Komentarai</th>
@@ -46,7 +48,9 @@
       {% for taskai in taskiukai %}
       <th>{{taskai.diena}}</th>
       <td>{{taskai.pristatymai}}</td>
+      <td>{{taskai.pristatymai_pakuotes}}</td>
       <td>{{taskai.uzsakymai}}</td>
+      <td>{{taskai.uzsakymai_pakuotes}}</td>
       <td>{{taskai.km}}</td>
       <td>{{taskai.arbata}}</td>
       <td>{{taskai.apie}}</td>

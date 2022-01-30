@@ -12,11 +12,13 @@ class Taskai(models.Model):
     '''
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     diena = models.DateField(auto_now_add=False)
-    uzsakymai = models.CharField(max_length=3)
-    pristatymai = models.CharField(max_length=3)
-    km = models.CharField(max_length=4)
-    apie = models.TextField(null=True, blank=True)
+    pristatymai = models.IntegerField()
+    pristatymai_pakuotes = models.IntegerField()
+    uzsakymai = models.IntegerField()
+    uzsakymai_pakuotes = models.IntegerField()
+    km = models.IntegerField()
     arbata = models.IntegerField()
+    apie = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return str(self.diena)  # very important to add str when displaying by date... https://www.youtube.com/watch?v=xKi87JuIWRM this error and this fix

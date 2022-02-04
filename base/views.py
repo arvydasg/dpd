@@ -70,7 +70,7 @@ class TaskaiDetail(LoginRequiredMixin, DetailView):
 class TaskaiCreate(LoginRequiredMixin, CreateView):
     model = Taskai
     # fields = '__all__'
-    fields = ['diena', 'pristatymai', 'pristatymai_pakuotes', 'uzsakymai', 'uzsakymai_pakuotes', 'km', 'arbata', 'apie']
+    fields = ['diena', 'pristatymai', 'pristatymai_pakuotes', 'uzsakymai', 'nepavyko', 'pastomatai', 'uzsakymai_pakuotes', 'km', 'arbata', 'apie']
     success_url = reverse_lazy('visi-taskai')
 
     def form_valid(self, form):
@@ -81,7 +81,7 @@ class TaskaiCreate(LoginRequiredMixin, CreateView):
     
 class TaskaiUpdate(LoginRequiredMixin, UpdateView):
     model = Taskai
-    fields = ['diena', 'pristatymai', 'pristatymai_pakuotes', 'uzsakymai', 'uzsakymai_pakuotes', 'km', 'arbata', 'apie']
+    fields = ['diena', 'pristatymai', 'pristatymai_pakuotes', 'uzsakymai', 'nepavyko', 'pastomatai', 'uzsakymai_pakuotes', 'km', 'arbata', 'apie']
     success_url = reverse_lazy('visi-taskai')
 
 

@@ -161,8 +161,10 @@ only screen and (max-width: 760px),
     td:nth-of-type(2):before { content: "Pakuotes"; }
     td:nth-of-type(3):before { content: "Uzsakymai"; }
     td:nth-of-type(4):before { content: "Pakuotes"; }
-    td:nth-of-type(5):before { content: "Kilometrai"; }
-    td:nth-of-type(6):before { content: "Arbata"; }
-    td:nth-of-type(7):before { content: "Komentarai"; }
-    td:nth-of-type(8):before { content: "Veiksmai"; }
+    td:nth-of-type(5):before { content: "Nepavyko"; }
+    td:nth-of-type(6):before { content: "Pastomatai"; }
+    td:nth-of-type(7):before { content: "Kilometrai"; }
+    td:nth-of-type(8):before { content: "Arbata"; }
+    td:nth-of-type(9):before { content: "Komentarai"; }
+    td:nth-of-type(10):before { content: "Veiksmai"; }
 }

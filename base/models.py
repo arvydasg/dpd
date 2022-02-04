@@ -13,11 +13,13 @@ class Taskai(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     diena = models.DateField(auto_now_add=False)
     pristatymai = models.IntegerField()
-    pristatymai_pakuotes = models.IntegerField()
+    pristatymai_pakuotes = models.IntegerField(null=True, blank=True)
     uzsakymai = models.IntegerField()
-    uzsakymai_pakuotes = models.IntegerField()
+    uzsakymai_pakuotes = models.IntegerField(null=True, blank=True)
+    nepavyko = models.CharField(max_length=50)
+    pastomatai = models.IntegerField()
     km = models.IntegerField()
-    arbata = models.IntegerField()
+    arbata = models.CharField(max_length=50, null=True, blank=True)
     apie = models.TextField(null=True, blank=True)
 
     def __str__(self):
